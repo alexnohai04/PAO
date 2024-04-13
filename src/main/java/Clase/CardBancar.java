@@ -13,7 +13,9 @@ public class CardBancar extends ContBancar {
         this.abonament = abonament;
         this.cvv = cvv;
     }
-
+    public CardBancar(ContBancar c){
+        super(c.getNume(),c.getIBAN(),c.getSold());
+    }
     public CardBancar(BasicPlan abonament, int cvv) {
         this.abonament = abonament;
         this.cvv = cvv;

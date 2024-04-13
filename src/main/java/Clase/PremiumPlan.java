@@ -9,9 +9,12 @@ public class PremiumPlan extends BasicPlan {
     public PremiumPlan(int cashback) {
         this.cashback = cashback;
     }
+    public PremiumPlan(BasicPlan b){
+        super(b.getPret(),b.getStartDate());
+    }
 
-    public PremiumPlan(int pret, LocalDate startDate, LocalDate endDate, int cashback) {
-        super(pret, startDate, endDate);
+    public PremiumPlan(int pret, LocalDate startDate, int cashback) {
+        super(pret, startDate);
         this.cashback = cashback;
     }
 

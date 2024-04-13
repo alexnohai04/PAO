@@ -9,8 +9,8 @@ public class Client {
 
     private String prenume;
     private String nrTelefon;
-    private List<ContBancar> conturi;
-    private List<Tranzactie> tranzactii;
+    private List<ContBancar> conturi = new ArrayList<>();
+    private List<Tranzactie> tranzactii = new ArrayList<>();
 
     public Client(){};
 

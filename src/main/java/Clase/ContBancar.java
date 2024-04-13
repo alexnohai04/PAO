@@ -14,6 +14,7 @@ public class ContBancar {
         this.sold = sold;
 
     }
+
     public ContBancar (){}
 
     public String getNume() {

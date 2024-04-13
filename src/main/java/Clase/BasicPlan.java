@@ -8,12 +8,11 @@ public class BasicPlan {
     private int pret;
 
     private LocalDate startDate;
-    private LocalDate endDate;
+
     public BasicPlan(){};
-    public BasicPlan(int pret, LocalDate startDate, LocalDate endDate) {
+    public BasicPlan(int pret, LocalDate startDate) {
         this.pret = pret;
         this.startDate = startDate;
-        this.endDate = endDate;
     }
 
     public int getPret() {
@@ -32,11 +31,4 @@ public class BasicPlan {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
 }

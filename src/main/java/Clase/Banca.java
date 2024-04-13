@@ -1,12 +1,13 @@
 package Clase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Banca {
     private String nume;
     private static Banca instance;
-    private List<Client> clienti;
-    private List<Atm> atms;
+    private List<Client> clienti = new ArrayList<>();
+    protected List<Atm> atms = new ArrayList<>();;
     private Banca() {}
 
     public void addClient(Client client){this.clienti.add(client); }
@@ -49,6 +50,9 @@ public class Banca {
         return atms;
     }
 
+    public void addAtmToBank(Atm a){
+        atms.add(a);
+    }
     public void setAtms(List<Atm> atms) {
         this.atms = atms;
     }
