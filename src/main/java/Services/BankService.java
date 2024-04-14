@@ -35,16 +35,29 @@ public class BankService {
         scanner.nextLine();
         b.addAtmToBank(a);
     }
+    public void showAtm(){
+        Banca b = Banca.getInstance();
+        for (Atm atm : b.getAtms()){
+            System.out.print("\nStrada: ");
+            System.out.print(atm.getStrada());
+            System.out.print("\nNumarul: ");
+            System.out.print(atm.getNumar());
+            System.out.println();
+        }
+    }
     public void addClient(){
-        Client c = new Client();
+        Client client = new Client();
+        if (clientMap.containsKey(client.getNume())) client = clientMap.get(client.getNume());
         System.out.println("Nume:");
-        c.setNume(scanner.nextLine());
+        client.setNume(scanner.nextLine());
         System.out.println("Nr de telefon:");
-        c.setNrTelefon(scanner.nextLine());
+        client.setNrTelefon(scanner.nextLine());
+
         System.out.println("Vrei sa deschizi un cont bancar?");
         System.out.println("1.Da");
         System.out.println("2.Nu");
         int choice = scanner.nextInt();
+        scanner.nextLine();
         if (choice == 1) {
             ContBancar cb = new ContBancar();
             System.out.println("Nume cont bancar:");
@@ -90,11 +103,67 @@ public class BankService {
                         System.out.println("Cashback(%):");
                         p.setCashback(scanner.nextInt());
                     }
-
+            client.addAccount(crb);
+            } else {
+                client.addAccount(cb);
             }
 
         }
-        clients.add(c);
+
+        System.out.println("Doresti sa efectuezi o tranzactie?");
+        System.out.println("1.Da");
+        System.out.println("2.Nu");
+        int choice4 = scanner.nextInt();
+        scanner.nextLine();
+        if (choice4 == 1) {
+            System.out.println("Din ce cont vreti sa trimiteti banii?");
+            for (int j=0;j<client.getConturi().size();j++){
+                System.out.print(j);
+                System.out.print(" ");
+                System.out.print(client.getConturi().get(j).getNume());
+                System.out.println();
+            }
+            int x = scanner.nextInt();
+            scanner.nextLine();
+            ContBancar contClient = client.getConturi().get(x);
+
+                System.out.println("Cui vrei sa-i trimiti o suma de bani?");
+                for (int i=0;i<clients.size();i++){
+                System.out.print(i);
+                System.out.print(" ");
+                System.out.print(clients.get(i).getNume());
+                System.out.println();
+            }
+            int i = scanner.nextInt();
+                scanner.nextLine();
+                Tranzactie tr = new Tranzactie();
+                Client destinatar = clients.get(i);
+                tr.setDestinatar(destinatar);
+                System.out.println("In ce cont vreti sa trimiteti banii?");
+                for (int j=0;i<destinatar.getConturi().size();j++){
+                    System.out.print(j);
+                    System.out.print(" ");
+                    System.out.print(destinatar.getConturi().get(j).getNume());
+                    System.out.println();
+                }
+            int j = scanner.nextInt();
+            scanner.nextLine();
+            ContBancar contDestinatar = destinatar.getConturi().get(j);
+            System.out.println("Ce suma doriti sa trimiteti?");
+            int suma = scanner.nextInt();
+            scanner.nextLine();
+            if(contClient.getSold() > x) {
+                contClient.sendMoney(x);
+                contDestinatar.recieveMoney(x);
+            }
+            else System.out.println("Fonduri insuficiente!");
+
+                client.addTranz(tr);
+
+        }
+
+        clients.add(client);
+        clientMap.put(client.getNume(), client);
     }
 
     public void displayClientDetails() {
@@ -135,11 +204,11 @@ public class BankService {
                     }
                 }
 
-                return; // Ne oprim din căutare după ce am găsit clientul
+                return;
             }
         }
 
-        // Afisăm un mesaj dacă nu am găsit clientul cu numele introdus
+
         System.out.println("Nu există un client cu acest nume.");
     }
 

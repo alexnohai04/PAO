@@ -17,6 +17,12 @@ public class ContBancar {
 
     public ContBancar (){}
 
+    public void recieveMoney(int x){
+        this.sold +=x;
+    }
+    public void sendMoney(int x){
+        this.sold = this.sold - x;
+    }
     public String getNume() {
         return nume;
     }

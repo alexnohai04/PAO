@@ -44,8 +44,34 @@ public class Main {
                     break;
                 case 1:
                     myBank.addClient();
+                    //System.out.println("1.Fa o noua tranzactie");
+                   // System.out.println("2.Extras de cont");
+                   // int choice3 = scanner.nextInt();
+
+                    break;
                 case 2:
-                    myBank.displayClientDetails();
+                    boolean ok = true;
+                    while(ok == true) {
+                        System.out.println("0.Exit");
+                        System.out.println("1.Afiseaza date despre client dupa nume");
+                        System.out.println("2.Adauga atm");
+                        System.out.println("3.Afiseaza lista de atm-uri");
+                        int choice2 = scanner.nextInt();
+                        switch (choice2) {
+                            case 0:
+                                ok = false;
+                                break;
+                                case 1:
+                                myBank.displayClientDetails();
+                                break;
+                            case 2:
+                                myBank.addAtm();
+                                break;
+                            case 3:
+                                myBank.showAtm();
+                                break;
+                        }
+                    }
             }
         }
     }

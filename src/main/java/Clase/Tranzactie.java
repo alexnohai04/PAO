@@ -13,6 +13,9 @@ public class Tranzactie {
         this.destinatar = destinatar;
         this.id= nextId ++;
     }
+    public Tranzactie(){
+        this.id= nextId ++;
+    };
 
     public int getId() {
         return id;
