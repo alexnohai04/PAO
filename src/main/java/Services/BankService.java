@@ -31,9 +31,24 @@ public class BankService {
         System.out.println("Introdu strada pe care vrei sa construiesti ATM-ul:");
         a.setStrada(scanner.nextLine());
         System.out.println("Numarul:");
-        a.setNumar(scanner.nextInt());
+        a.setNumar(readInt());
         scanner.nextLine();
         b.addAtmToBank(a);
+    }
+    public int readInt(){
+        boolean ok = true;
+        int number = 0;
+        while(ok) {
+            try {
+                number = scanner.nextInt();
+                scanner.nextLine();
+                ok = false;
+            } catch (InputMismatchException e) {
+                System.out.println("Input invalid. Te rog introdu un numar.");
+                scanner.nextLine();
+            }
+        }
+            return number;
     }
     public void showAtm(){
         Banca b = Banca.getInstance();
@@ -47,16 +62,21 @@ public class BankService {
     }
     public void addClient(){
         Client client = new Client();
-        if (clientMap.containsKey(client.getNume())) client = clientMap.get(client.getNume());
         System.out.println("Nume:");
         client.setNume(scanner.nextLine());
-        System.out.println("Nr de telefon:");
-        client.setNrTelefon(scanner.nextLine());
+        if (clientMap.containsKey(client.getNume())) {
+            client = clientMap.get(client.getNume());
+            System.out.println("Bine ai revenit ");
+        }
+        else {
 
+            System.out.println("Nr de telefon:");
+            client.setNrTelefon(scanner.nextLine());
+        }
         System.out.println("Vrei sa deschizi un cont bancar?");
         System.out.println("1.Da");
         System.out.println("2.Nu");
-        int choice = scanner.nextInt();
+        int choice = readInt();
         scanner.nextLine();
         if (choice == 1) {
             ContBancar cb = new ContBancar();
@@ -65,25 +85,23 @@ public class BankService {
             System.out.println("IBAN:");
             cb.setIBAN(scanner.nextLine());
             System.out.println("Sold-ul contului:");
-            cb.setSold(scanner.nextInt());
+            cb.setSold(readInt());
             System.out.println("Doresti sa atasezi un card bancar contului?:");
             System.out.println("1.Da");
             System.out.println("2.Nu");
 
-            int card=scanner.nextInt();
+            int card=readInt();;
             if (card == 1) {
                 CardBancar crb = new CardBancar(cb);
                 System.out.println("CVV:");
-                crb.setCvv(scanner.nextInt());
+                crb.setCvv(readInt());
                 System.out.println("Ce tip de abonament doriti?");
                 System.out.println("1.Standard");
                 System.out.println("2.Premium");
-                int abonament = scanner.nextInt();
+                int abonament = readInt();;
                 BasicPlan b = new BasicPlan();
                 System.out.println("Pret:");
-                b.setPret(scanner.nextInt());
-                scanner.nextLine();
-
+                b.setPret(readInt());
                 boolean ok = false;
                 while (ok == false) {
                     System.out.println("Data de incepere (format: yyyy-MM-dd):");
@@ -101,7 +119,7 @@ public class BankService {
                     } else if (abonament == 2) {
                         PremiumPlan p = new PremiumPlan(b);
                         System.out.println("Cashback(%):");
-                        p.setCashback(scanner.nextInt());
+                        p.setCashback(readInt());
                     }
             client.addAccount(crb);
             } else {
@@ -113,8 +131,7 @@ public class BankService {
         System.out.println("Doresti sa efectuezi o tranzactie?");
         System.out.println("1.Da");
         System.out.println("2.Nu");
-        int choice4 = scanner.nextInt();
-        scanner.nextLine();
+        int choice4 = readInt();;
         if (choice4 == 1) {
             System.out.println("Din ce cont vreti sa trimiteti banii?");
             for (int j=0;j<client.getConturi().size();j++){
@@ -123,8 +140,8 @@ public class BankService {
                 System.out.print(client.getConturi().get(j).getNume());
                 System.out.println();
             }
-            int x = scanner.nextInt();
-            scanner.nextLine();
+            int x = readInt();;
+
             ContBancar contClient = client.getConturi().get(x);
 
                 System.out.println("Cui vrei sa-i trimiti o suma de bani?");
@@ -134,8 +151,8 @@ public class BankService {
                 System.out.print(clients.get(i).getNume());
                 System.out.println();
             }
-            int i = scanner.nextInt();
-                scanner.nextLine();
+            int i = readInt();;
+
                 Tranzactie tr = new Tranzactie();
                 Client destinatar = clients.get(i);
                 tr.setDestinatar(destinatar);
@@ -146,12 +163,10 @@ public class BankService {
                     System.out.print(destinatar.getConturi().get(j).getNume());
                     System.out.println();
                 }
-            int j = scanner.nextInt();
-            scanner.nextLine();
+            int j =readInt();
             ContBancar contDestinatar = destinatar.getConturi().get(j);
             System.out.println("Ce suma doriti sa trimiteti?");
-            int suma = scanner.nextInt();
-            scanner.nextLine();
+            int suma =readInt();
             if(contClient.getSold() > x) {
                 contClient.sendMoney(x);
                 contDestinatar.recieveMoney(x);

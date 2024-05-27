@@ -2,7 +2,10 @@ package org.example;
 
 import Services.BankService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -12,11 +15,13 @@ public class Main {
         System.out.println("Bine ai venit in lumea digital banking!");
         myBank.createBank();
         System.out.println("Pentru ca nicio banca nu functioneaza fara ATM-uri, cate ai vrea sa creezi?");
-        int nrAtm = scanner.nextInt();
-        scanner.nextLine();
+
+        int nrAtm = myBank.readInt();
+
         for (int i = 0; i < nrAtm; i++) {
             myBank.addAtm();
         }
+
         System.out.println("Banca a fost initializata cu succes!");
     }
 
@@ -56,7 +61,7 @@ public class Main {
                         System.out.println("1.Afiseaza date despre client dupa nume");
                         System.out.println("2.Adauga atm");
                         System.out.println("3.Afiseaza lista de atm-uri");
-                        int choice2 = scanner.nextInt();
+                        int choice2 = myBank.readInt();
                         switch (choice2) {
                             case 0:
                                 ok = false;
