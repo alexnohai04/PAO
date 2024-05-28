@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Banca {
+    private int id;
     private String nume;
     private static Banca instance;
     private List<Client> clienti = new ArrayList<>();
-    protected List<Atm> atms = new ArrayList<>();;
-    private Banca() {}
+    protected List<Atm> atms = new ArrayList<>();
+    public Banca() {}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void addClient(Client client){this.clienti.add(client); }
     public void addAtm(Atm atm){this.atms.add(atm); }
@@ -55,5 +64,15 @@ public class Banca {
     }
     public void setAtms(List<Atm> atms) {
         this.atms = atms;
+    }
+
+    @Override
+    public String toString() {
+        return "Banca{" +
+                "id=" + id +
+                ", nume='" + nume + '\'' +
+                ", clienti=" + clienti +
+                ", atms=" + atms +
+                '}';
     }
 }

@@ -3,8 +3,16 @@ package Clase;
 import java.time.LocalDate;
 
 public class PremiumPlan extends BasicPlan {
+    private int id;
     private int cashback;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public PremiumPlan(){};
     public PremiumPlan(int cashback) {
         this.cashback = cashback;

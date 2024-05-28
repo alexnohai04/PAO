@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class BasicPlan {
 
+    private int id;
     private int pret;
 
     private LocalDate startDate;
@@ -13,6 +14,14 @@ public class BasicPlan {
     public BasicPlan(int pret, LocalDate startDate) {
         this.pret = pret;
         this.startDate = startDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPret() {

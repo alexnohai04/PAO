@@ -3,7 +3,7 @@ package Clase;
 import java.util.*;
 
 public class ContBancar {
-
+    private int id;
     private String nume;
     private String IBAN;
     private int sold;
@@ -16,6 +16,14 @@ public class ContBancar {
     }
 
     public ContBancar (){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void recieveMoney(int x){
         this.sold +=x;

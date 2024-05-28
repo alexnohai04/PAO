@@ -5,18 +5,25 @@ import java.util.List;
 import java.util.Objects;
 
 public class Client {
+    private int id;
+
     private String nume;
 
-    private String prenume;
     private String nrTelefon;
     private List<ContBancar> conturi = new ArrayList<>();
     private List<Tranzactie> tranzactii = new ArrayList<>();
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public Client(){};
 
-    public Client(String nume, String prenume, String nrTelefon) {
+    public Client(String nume, String nrTelefon) {
         this.nume = nume;
-        this.prenume=prenume;
         this.nrTelefon = nrTelefon;
         this.conturi = new ArrayList<>();
         this.tranzactii= new ArrayList<>();
@@ -48,6 +55,17 @@ public class Client {
 
     public void addAccount(ContBancar cont){ this.conturi.add(cont); }
     public void addTranz(Tranzactie tranz){ this.tranzactii.add(tranz); }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", nume='" + nume + '\'' +
+                ", nrTelefon='" + nrTelefon + '\'' +
+                ", conturi=" + conturi +
+                ", tranzactii=" + tranzactii +
+                '}';
+    }
 
     @Override
     public boolean equals(Object o) {

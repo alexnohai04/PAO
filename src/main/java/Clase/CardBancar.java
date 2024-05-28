@@ -4,9 +4,18 @@ import java.util.Objects;
 
 public class CardBancar extends ContBancar {
 
+    private int id;
+
     private BasicPlan abonament;
     private int cvv;
     public CardBancar(){};
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public CardBancar(String nume, String IBAN, int sold, BasicPlan abonament, int cvv) {
         super(nume, IBAN, sold);
