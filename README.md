@@ -26,4 +26,4 @@ This project is a digital banking application that simulates basic banking opera
 - **displayClientDetails()**: Displays detailed information about a client by name.
 
 ### Audit 
-- implemented an audit system that shows each action an the time it was made
+- implemented an audit system that shows each action and the time it was made
